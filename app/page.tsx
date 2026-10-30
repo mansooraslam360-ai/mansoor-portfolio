@@ -754,9 +754,9 @@ export default function Home() {
           </a>
         </div>
 
-        <span className="copyright">
-          © {new Date().getFullYear()} Mansoor Aslam. All rights reserved.
-        </span>
+    <span className="copyright">
+      © 2026 Mansoor Aslam. All rights reserved.
+      </span> 
       </footer>
 
       {/* BACK TO TOP */}
