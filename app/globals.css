@@ -168,7 +168,7 @@ h1 { font-size: clamp(56px, 7vw, 86px); line-height: .99; letter-spacing: -5px; 
   border: 1px solid rgba(154, 123, 255, 0.4);
   background: #111b30;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
-  transform: rotate(2deg);
+  transform: none;
 }
 
 .hero-profile-photo {
