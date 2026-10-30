@@ -5,8 +5,10 @@ import Image from "next/image";
 import { useState, type FormEvent } from "react";
 
 const emailAddress = "mansooraslam360@gmail.com";
+
 const linkedinUrl =
   "https://www.linkedin.com/in/mansoor-aslam-649235361/";
+
 const githubUrl =
   "https://github.com/mansooraslam360-ai";
 
@@ -43,7 +45,7 @@ const skillGroups = [
   },
   {
     title: "Development tools",
-    note: "Tools used in practical development",
+    note: "Used in practical development",
     skills: [
       "Docker",
       "Postman",
@@ -74,10 +76,14 @@ export default function Home() {
 
     const formData = new FormData(event.currentTarget);
 
-    const name = String(formData.get("name") || "").trim();
+    const name = String(
+      formData.get("name") || ""
+    ).trim();
+
     const senderEmail = String(
       formData.get("email") || ""
     ).trim();
+
     const message = String(
       formData.get("message") || ""
     ).trim();
@@ -97,6 +103,7 @@ export default function Home() {
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(emailAddress);
+
       setCopied(true);
 
       window.setTimeout(() => {
@@ -113,6 +120,7 @@ export default function Home() {
       {/* ================= NAVIGATION ================= */}
 
       <header className="site-header">
+
         <a
           className="brand"
           href="#home"
@@ -156,6 +164,7 @@ export default function Home() {
         <a className="header-cta" href="#contact">
           Let's talk <ArrowIcon />
         </a>
+
       </header>
 
       {/* ================= HERO SECTION ================= */}
@@ -200,6 +209,7 @@ export default function Home() {
           </div>
 
           <div className="hero-actions">
+
             <a
               className="button button-primary"
               href="#projects"
@@ -213,12 +223,14 @@ export default function Home() {
             >
               Contact me <span aria-hidden="true">→</span>
             </a>
+
           </div>
 
           <p className="hero-footnote">
             <span className="pulse-dot" />
             Open to Backend Developer opportunities.
           </p>
+
         </div>
 
         {/* PERSONAL PHOTOGRAPH */}
@@ -227,9 +239,11 @@ export default function Home() {
           className="hero-visual hero-photo-visual"
           aria-label="Mansoor Aslam profile photograph"
         >
+
           <div className="hero-photo-halo" />
 
           <div className="hero-photo-frame">
+
             <Image
               src="/images/mansoor.jpg"
               alt="Mansoor Aslam - Backend Developer"
@@ -243,18 +257,22 @@ export default function Home() {
               <span>HELLO, I'M MANSOOR</span>
               <strong>Backend Developer</strong>
             </div>
+
           </div>
 
           <div className="floating-card floating-top">
+
             <span className="float-icon">⌘</span>
 
             <span>
               <b>Clean APIs</b>
               <small>Thoughtful backend design</small>
             </span>
+
           </div>
 
           <div className="floating-card floating-bottom">
+
             <span className="float-icon float-icon-blue">
               ▤
             </span>
@@ -263,12 +281,15 @@ export default function Home() {
               <b>Structured data</b>
               <small>Reliable database foundations</small>
             </span>
+
           </div>
 
           <div className="visual-caption">
             DESIGN · BUILD · TEST · IMPROVE
           </div>
+
         </div>
+
       </section>
 
       {/* ================= PROFESSIONAL HIGHLIGHTS ================= */}
@@ -277,14 +298,15 @@ export default function Home() {
         className="quick-facts section-wrap"
         aria-label="Professional highlights"
       >
+
         <div>
           <strong>BSCS</strong>
           <span>Graduate · 2026</span>
         </div>
 
         <div>
-          <strong>3M+</strong>
-          <span>Internship experience</span>
+          <strong>2026</strong>
+          <span>Industry internship</span>
         </div>
 
         <div>
@@ -296,6 +318,7 @@ export default function Home() {
           <strong>Build<span className="accent">.</span></strong>
           <span>Learn and improve</span>
         </div>
+
       </section>
 
       {/* ================= ABOUT SECTION ================= */}
@@ -304,7 +327,9 @@ export default function Home() {
         className="section-wrap content-section about-section"
         id="about"
       >
+
         <div className="section-heading">
+
           <span className="section-kicker">
             A LITTLE INTRODUCTION
           </span>
@@ -317,11 +342,13 @@ export default function Home() {
             My background, professional experience and
             passion for backend engineering.
           </p>
+
         </div>
 
         <div className="about-grid">
 
           <div className="about-art">
+
             <div className="about-monogram">
               MA<span>.</span>
             </div>
@@ -332,6 +359,7 @@ export default function Home() {
             </div>
 
             <div className="about-ring" />
+
           </div>
 
           <div className="about-copy">
@@ -395,8 +423,11 @@ export default function Home() {
               </div>
 
             </div>
+
           </div>
+
         </div>
+
       </section>
 
       {/* ================= SKILLS SECTION ================= */}
@@ -405,6 +436,7 @@ export default function Home() {
         className="section-wrap content-section"
         id="skills"
       >
+
         <div className="section-heading centered-heading">
 
           <span className="section-kicker">
@@ -419,14 +451,17 @@ export default function Home() {
             Technologies I have worked with through
             practical backend development.
           </p>
+
         </div>
 
         <div className="skill-grid">
 
           {skillGroups.map((group, index) => (
+
             <article className="skill-card" key={group.title}>
 
               <div className="skill-card-top">
+
                 <span className="skill-icon">
                   {group.icon}
                 </span>
@@ -434,6 +469,7 @@ export default function Home() {
                 <span className="card-index">
                   0{index + 1}
                 </span>
+
               </div>
 
               <h3>{group.title}</h3>
@@ -441,12 +477,15 @@ export default function Home() {
               <p>{group.note}</p>
 
               <div className="skill-pills">
+
                 {group.skills.map((skill) => (
                   <span key={skill}>{skill}</span>
                 ))}
+
               </div>
 
             </article>
+
           ))}
 
         </div>
@@ -455,6 +494,7 @@ export default function Home() {
           Additional development tools include Postman,
           Git, GitHub and Alembic.
         </p>
+
       </section>
 
       {/* ================= EXPERIENCE SECTION ================= */}
@@ -483,7 +523,7 @@ export default function Home() {
 
         <div className="timeline">
 
-          {/* DECIBELS INTERNSHIP */}
+          {/* DECIBELS DEV INTERNSHIP */}
 
           <div className="timeline-item">
 
@@ -500,6 +540,7 @@ export default function Home() {
               <div className="timeline-card-head">
 
                 <div>
+
                   <span className="mini-label">
                     DECIBELS DEV
                   </span>
@@ -507,6 +548,7 @@ export default function Home() {
                   <h3>
                     Backend Developer Intern
                   </h3>
+
                 </div>
 
                 <span className="timeline-badge">
@@ -519,7 +561,8 @@ export default function Home() {
                 Worked as a Backend Developer Intern at
                 Decibels Dev in Bahawalpur, Punjab, Pakistan.
                 Contributed to the development of a
-                database-driven application backend.
+                database-driven application backend in an
+                on-site development environment.
               </p>
 
               <ul>
@@ -562,6 +605,7 @@ export default function Home() {
               </ul>
 
               <div className="timeline-tags">
+
                 <span>Python</span>
                 <span>FastAPI</span>
                 <span>PostgreSQL</span>
@@ -569,6 +613,7 @@ export default function Home() {
                 <span>Docker</span>
                 <span>Alembic</span>
                 <span>Postman</span>
+
               </div>
 
               <p className="edit-hint">
@@ -596,6 +641,7 @@ export default function Home() {
               <div className="timeline-card-head">
 
                 <div>
+
                   <span className="mini-label">
                     UNIVERSITY OF LAHORE
                   </span>
@@ -603,6 +649,7 @@ export default function Home() {
                   <h3>
                     Bachelor of Science in Computer Science
                   </h3>
+
                 </div>
 
                 <span className="timeline-badge">
@@ -622,7 +669,7 @@ export default function Home() {
 
           </div>
 
-          {/* UNIVERSITY LEADERSHIP */}
+          {/* YPDC UNIVERSITY LEADERSHIP */}
 
           <div className="timeline-item">
 
@@ -639,13 +686,15 @@ export default function Home() {
               <div className="timeline-card-head">
 
                 <div>
+
                   <span className="mini-label">
-                    UNIVERSITY SOCIETY
+                    YPDC · YOUNG PEACE AND DEVELOPMENT CORPS
                   </span>
 
                   <h3>
                     Vice President
                   </h3>
+
                 </div>
 
                 <span className="timeline-badge">
@@ -656,25 +705,17 @@ export default function Home() {
 
               <p>
                 Progressed from Management Head to Vice
-                President within a university society.
+                President within YPDC (Young Peace and
+                Development Corps), a university society.
               </p>
 
-              <ul>
-                <li>
-                  Served as Management Head before being
-                  promoted to Vice President.
-                </li>
-
-                <li>
-                  Gained experience in organizational
-                  management and student leadership.
-                </li>
-              </ul>
-
               <div className="timeline-tags">
+
+                <span>Vice President</span>
+                <span>Management Head</span>
                 <span>Leadership</span>
-                <span>Management</span>
                 <span>Team Coordination</span>
+
               </div>
 
             </article>
@@ -682,6 +723,7 @@ export default function Home() {
           </div>
 
         </div>
+
       </section>
 
       {/* ================= PROJECT SECTION ================= */}
@@ -709,6 +751,8 @@ export default function Home() {
         </div>
 
         <article className="project-card">
+
+          {/* CONCEPTUAL PROJECT PREVIEW */}
 
           <div className="project-preview">
 
@@ -755,6 +799,7 @@ export default function Home() {
                 </div>
 
               </div>
+
             </div>
 
             <span className="preview-caption">
@@ -762,6 +807,8 @@ export default function Home() {
             </span>
 
           </div>
+
+          {/* PROJECT DETAILS */}
 
           <div className="project-info">
 
@@ -816,6 +863,7 @@ export default function Home() {
             </div>
 
             <div className="project-tech">
+
               <span>Python</span>
               <span>FastAPI</span>
               <span>SQLAlchemy</span>
@@ -823,6 +871,7 @@ export default function Home() {
               <span>Docker</span>
               <span>Alembic</span>
               <span>Postman</span>
+
             </div>
 
             <p className="edit-hint">
@@ -837,6 +886,7 @@ export default function Home() {
             </a>
 
           </div>
+
         </article>
 
         <p className="project-disclaimer">
