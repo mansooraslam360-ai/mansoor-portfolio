@@ -6,11 +6,16 @@ import { useState, type FormEvent } from "react";
 
 const emailAddress = "mansooraslam360@gmail.com";
 
+const phoneNumber = "03078995104";
+
 const linkedinUrl =
   "https://www.linkedin.com/in/mansoor-aslam-649235361/";
 
 const githubUrl =
   "https://github.com/mansooraslam360-ai";
+
+const cvUrl =
+  "/cv/Mansoor_Aslam_Backend_Developer_CV.pdf";
 
 const navigation = [
   ["Home", "home"],
@@ -224,6 +229,17 @@ export default function Home() {
               Contact me <span aria-hidden="true">→</span>
             </a>
 
+            {/* DOWNLOAD CV */}
+
+            <a
+              className="button button-ghost"
+              href={cvUrl}
+              download="Mansoor_Aslam_Backend_Developer_CV.pdf"
+            >
+              Download CV
+              <span aria-hidden="true">↓</span>
+            </a>
+
           </div>
 
           <p className="hero-footnote">
@@ -257,30 +273,6 @@ export default function Home() {
               <span>HELLO, I'M MANSOOR</span>
               <strong>Backend Developer</strong>
             </div>
-
-          </div>
-
-          <div className="floating-card floating-top">
-
-            <span className="float-icon">⌘</span>
-
-            <span>
-              <b>Clean APIs</b>
-              <small>Thoughtful backend design</small>
-            </span>
-
-          </div>
-
-          <div className="floating-card floating-bottom">
-
-            <span className="float-icon float-icon-blue">
-              ▤
-            </span>
-
-            <span>
-              <b>Structured data</b>
-              <small>Reliable database foundations</small>
-            </span>
 
           </div>
 
@@ -391,6 +383,14 @@ export default function Home() {
               backend using Python and FastAPI, including
               feature flags, database operations, permissions
               and API testing.
+            </p>
+
+            <p>
+              Outside software development, I have also
+              developed leadership and organizational
+              experience through YPDC (Young Peace and
+              Development Corps), where I progressed from
+              Management Head to Vice President.
             </p>
 
             <p>
@@ -560,17 +560,18 @@ export default function Home() {
               <p>
                 Worked as a Backend Developer Intern at
                 Decibels Dev in Bahawalpur, Punjab, Pakistan.
-                Contributed to the development of a
-                database-driven application backend in an
-                on-site development environment.
+                Completed a three-month, on-site internship
+                contributing to the development of a
+                database-driven application backend.
               </p>
 
               <ul>
 
                 <li>
-                  Developed backend API endpoints using
-                  Python and FastAPI, followed by endpoint
-                  testing and response verification.
+                  Independently developed backend API
+                  endpoints using Python and FastAPI,
+                  followed by endpoint testing and
+                  response verification.
                 </li>
 
                 <li>
@@ -591,9 +592,13 @@ export default function Home() {
                 </li>
 
                 <li>
-                  Worked on application validation,
-                  database operations and backend
-                  business logic.
+                  Collaborated with frontend developers
+                  during application development.
+                </li>
+
+                <li>
+                  Used Swagger / OpenAPI documentation
+                  to inspect and work with API endpoints.
                 </li>
 
                 <li>
@@ -613,6 +618,7 @@ export default function Home() {
                 <span>Docker</span>
                 <span>Alembic</span>
                 <span>Postman</span>
+                <span>Swagger</span>
 
               </div>
 
@@ -669,7 +675,7 @@ export default function Home() {
 
           </div>
 
-          {/* YPDC UNIVERSITY LEADERSHIP */}
+          {/* YPDC: VICE PRESIDENT */}
 
           <div className="timeline-item">
 
@@ -678,7 +684,7 @@ export default function Home() {
             </div>
 
             <div className="timeline-date">
-              UNIVERSITY LEADERSHIP
+              JANUARY 2026 — JULY 2026
             </div>
 
             <article className="timeline-card">
@@ -704,17 +710,108 @@ export default function Home() {
               </div>
 
               <p>
-                Progressed from Management Head to Vice
-                President within YPDC (Young Peace and
-                Development Corps), a university society.
+                Promoted to Vice President after serving
+                as Management Head within YPDC, a
+                university society.
               </p>
+
+              <ul>
+
+                <li>
+                  Coordinated society members and teams
+                  in university activities.
+                </li>
+
+                <li>
+                  Supported event planning, scheduling
+                  and organizational operations.
+                </li>
+
+                <li>
+                  Managed event operations and worked
+                  with teams to coordinate activities.
+                </li>
+
+              </ul>
 
               <div className="timeline-tags">
 
                 <span>Vice President</span>
-                <span>Management Head</span>
                 <span>Leadership</span>
                 <span>Team Coordination</span>
+                <span>Event Management</span>
+
+              </div>
+
+            </article>
+
+          </div>
+
+          {/* YPDC: MANAGEMENT HEAD */}
+
+          <div className="timeline-item">
+
+            <div className="timeline-marker">
+              <span />
+            </div>
+
+            <div className="timeline-date">
+              MAY 2025 — JANUARY 2026
+            </div>
+
+            <article className="timeline-card">
+
+              <div className="timeline-card-head">
+
+                <div>
+
+                  <span className="mini-label">
+                    YPDC · YOUNG PEACE AND DEVELOPMENT CORPS
+                  </span>
+
+                  <h3>
+                    Management Head
+                  </h3>
+
+                </div>
+
+                <span className="timeline-badge">
+                  Leadership
+                </span>
+
+              </div>
+
+              <p>
+                Served as Management Head, contributing
+                to the planning, coordination and execution
+                of university society activities.
+              </p>
+
+              <ul>
+
+                <li>
+                  Managed society members and coordinated
+                  teams.
+                </li>
+
+                <li>
+                  Organized university events and
+                  coordinated event operations.
+                </li>
+
+                <li>
+                  Planned activities and schedules to
+                  support society initiatives.
+                </li>
+
+              </ul>
+
+              <div className="timeline-tags">
+
+                <span>Management</span>
+                <span>Event Planning</span>
+                <span>Team Coordination</span>
+                <span>Operations</span>
 
               </div>
 
@@ -857,7 +954,8 @@ export default function Home() {
 
               <div>
                 <span>06</span>
-                API development, testing and validation
+                API development, Swagger documentation,
+                testing and validation
               </div>
 
             </div>
@@ -1076,6 +1174,21 @@ export default function Home() {
 
               <a
                 className="contact-detail"
+                href={`tel:${phoneNumber}`}
+              >
+
+                <span className="detail-icon">☎</span>
+
+                <span>
+                  <small>PHONE</small>
+                  <b>{phoneNumber}</b>
+                  <em>Call me</em>
+                </span>
+
+              </a>
+
+              <a
+                className="contact-detail"
                 href={linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -1168,6 +1281,13 @@ export default function Home() {
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
+
+          <a
+            href={cvUrl}
+            download="Mansoor_Aslam_Backend_Developer_CV.pdf"
+          >
+            Download CV ↓
+          </a>
 
           <a
             href={githubUrl}
