@@ -400,3 +400,42 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================
+   NAVIGATION: REVEAL WHEN HOVERING NEAR TOP
+========================================= */
+@media (min-width: 701px) and (hover: hover) and (pointer: fine) {
+  .site-header {
+    position: sticky;
+    top: -85px;
+    z-index: 30;
+    transition: top 0.25s ease;
+  }
+
+  /* Invisible hover zone where the navigation normally sits. */
+  .site-header::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(620px, calc(100vw - 36px));
+    height: 80px;
+    z-index: -1;
+  }
+
+  .site-header:hover,
+  .site-header:focus-within {
+    top: 12px;
+  }
+}
+
+/* Devices without hover keep an accessible navigation header. */
+@media (max-width: 700px), (hover: none), (pointer: coarse) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+}
