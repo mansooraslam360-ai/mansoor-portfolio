@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 const emailAddress = "mansooraslam360@gmail.com";
 
@@ -19,17 +19,17 @@ const cvUrl =
 
 const navigation = [
   ["Home", "home"],
-  ["About", "about"],
+  ["Projects", "projects"],
   ["Skills", "skills"],
   ["Experience", "experience"],
-  ["Projects", "projects"],
+  ["About", "about"],
   ["Contact", "contact"],
 ] as const;
 
 const skillGroups = [
   {
     title: "Backend development",
-    note: "Intermediate proficiency",
+    note: "APIs, services and application logic",
     skills: [
       "Python",
       "FastAPI",
@@ -40,7 +40,7 @@ const skillGroups = [
   },
   {
     title: "Databases",
-    note: "Intermediate proficiency",
+    note: "Data modeling and persistence",
     skills: [
       "PostgreSQL",
       "MySQL",
@@ -50,7 +50,7 @@ const skillGroups = [
   },
   {
     title: "Development tools",
-    note: "Used in practical development",
+    note: "Development, testing and delivery",
     skills: [
       "Docker",
       "Postman",
@@ -167,6 +167,22 @@ function ArrowIcon() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>("main section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: "-18% 0px -56% 0px", threshold: [0, 0.15, 0.3, 0.6] }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   function handleContactSubmit(
     event: FormEvent<HTMLFormElement>
@@ -253,7 +269,12 @@ export default function Home() {
             <a
               key={id}
               href={`#${id}`}
-              onClick={() => setMenuOpen(false)}
+              className={activeSection === id ? "nav-active" : ""}
+              aria-current={activeSection === id ? "location" : undefined}
+              onClick={() => {
+                setActiveSection(id);
+                setMenuOpen(false);
+              }}
             >
               {label}
             </a>
@@ -261,7 +282,7 @@ export default function Home() {
         </nav>
 
         <a className="header-cta" href="#contact">
-          Let's talk <ArrowIcon />
+          Let&apos;s talk <ArrowIcon />
         </a>
 
       </header>
@@ -278,7 +299,7 @@ export default function Home() {
           </div>
 
           <p className="hello-label">
-            Hello, I'm
+            Hello, I&apos;m
           </p>
 
           <h1>
@@ -288,16 +309,14 @@ export default function Home() {
           </h1>
 
           <h2 className="hero-role">
-            I engineer the backend <span>behind</span> great
-            applications.
+            Building the systems <span>behind</span> great products.
           </h2>
 
           <p className="hero-description">
-            I'm a Computer Science graduate and Backend
-            Developer with practical internship experience
-            developing APIs and database-driven applications.
-            I work with Python, FastAPI, Django and SQL
-            technologies to build reliable backend solutions.
+            Computer Science graduate and Python Backend Developer
+            focused on secure APIs, clean database design and dependable
+            business logic. I turn complex requirements into backend
+            systems that are practical to build on.
           </p>
 
           <div className="hero-tags">
@@ -313,14 +332,7 @@ export default function Home() {
               className="button button-primary"
               href="#projects"
             >
-              Explore my work <ArrowIcon />
-            </a>
-
-            <a
-              className="button button-ghost"
-              href="#contact"
-            >
-              Contact me <span aria-hidden="true">→</span>
+              View my projects <ArrowIcon />
             </a>
 
             {/* DOWNLOAD CV */}
@@ -332,6 +344,10 @@ export default function Home() {
             >
               Download CV
               <span aria-hidden="true">↓</span>
+            </a>
+
+            <a className="hero-contact-link" href="#contact">
+              Get in touch <span aria-hidden="true">↗</span>
             </a>
 
           </div>
@@ -352,6 +368,10 @@ export default function Home() {
 
           <div className="hero-photo-halo" />
 
+          <div className="photo-insight photo-insight-top" aria-hidden="true">
+            <span className="insight-indicator" /> API-FIRST MINDSET
+          </div>
+
           <div className="hero-photo-frame">
 
             <Image
@@ -364,10 +384,15 @@ export default function Home() {
             />
 
             <div className="hero-photo-overlay">
-              <span>HELLO, I'M MANSOOR</span>
+              <span>HELLO, I&apos;M MANSOOR</span>
               <strong>Backend Developer</strong>
             </div>
 
+          </div>
+
+          <div className="photo-insight photo-insight-bottom" aria-hidden="true">
+            <span className="insight-code">{`</>`}</span>
+            <span>PYTHON / FASTAPI / POSTGRESQL</span>
           </div>
 
           <div className="visual-caption">
@@ -386,141 +411,140 @@ export default function Home() {
       >
 
         <div>
-          <strong>BSCS</strong>
-          <span>Graduate · 2026</span>
+          <strong>2026</strong>
+          <span>Computer Science graduate</span>
         </div>
 
         <div>
-          <strong>2026</strong>
-          <span>Industry internship</span>
+          <strong>03</strong>
+          <span>Backend projects</span>
         </div>
 
         <div>
           <strong>API</strong>
-          <span>Backend development</span>
+          <span>Backend engineering focus</span>
         </div>
 
         <div>
-          <strong>Build<span className="accent">.</span></strong>
-          <span>Learn and improve</span>
+          <strong>01</strong>
+          <span>Professional internship</span>
         </div>
 
       </section>
 
-      {/* ================= ABOUT SECTION ================= */}
+      {/* ================= PROJECT SECTION ================= */}
 
       <section
-        className="section-wrap content-section about-section"
-        id="about"
+        className="section-wrap content-section projects-section"
+        id="projects"
       >
 
-        <div className="section-heading">
+        <div className="section-heading centered-heading">
 
           <span className="section-kicker">
-            A LITTLE INTRODUCTION
+            SELECTED WORK
           </span>
 
           <h2>
-            About <span className="accent">me.</span>
+            Projects that make <span className="accent">ideas real.</span>
           </h2>
 
           <p>
-            My background, professional experience and
-            passion for backend engineering.
+            Practical backend development and
+            database-driven application engineering.
           </p>
 
         </div>
 
-        <div className="about-grid">
+        <div className="project-list">
+          {projects.map((project, projectIndex) => (
+            <article
+              className={`project-card project-card--${project.id}`}
+              key={project.id}
+            >
 
-          <div className="about-art">
+              {/* CONCEPTUAL PROJECT PREVIEW */}
 
-            <div className="about-monogram">
-              MA<span>.</span>
-            </div>
+              <div className="project-preview">
 
-            <div className="about-art-bottom">
-              <span>CURIOUS BY NATURE</span>
-              <span>BUILDER BY CHOICE</span>
-            </div>
+                <div className="project-preview-top">
+                  <span className="preview-brand">
+                    <i /> {project.brand}<span className="accent">{project.brandAccent}</span>
+                  </span>
+                  <span className="preview-status">{project.previewStatus}</span>
+                </div>
 
-            <div className="about-ring" />
+                <div className="preview-layout" aria-hidden="true">
+                  <div className="preview-sidebar">
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                  <div className="preview-main">
+                    <div className="preview-welcome">
+                      <small>{project.previewHeading}</small>
+                      <b>{project.previewMessage}</b>
+                    </div>
+                    <div className="preview-stats">
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                    <div className="preview-table">
+                      <i />
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                  </div>
+                </div>
 
-          </div>
-
-          <div className="about-copy">
-
-            <span className="mini-label">
-              BEHIND THE CODE
-            </span>
-
-            <h3>
-              Building reliable systems, one solution at a time.
-            </h3>
-
-            <p>
-              I'm a Computer Science graduate from the
-              University of Lahore with a strong interest
-              in backend engineering and software development.
-            </p>
-
-            <p>
-              I have practical experience developing APIs,
-              working with databases, implementing
-              authentication and authorization, and building
-              application-level business logic.
-            </p>
-
-            <p>
-              During my Backend Development Internship at
-              Decibels Dev, I worked on a full application
-              backend using Python and FastAPI, including
-              feature flags, database operations, permissions
-              and API testing.
-            </p>
-
-            <p>
-              Outside software development, I have also
-              developed leadership and organizational
-              experience through YPDC (Young Peace and
-              Development Corps), where I progressed from
-              Management Head to Vice President.
-            </p>
-
-            <p>
-              I enjoy understanding complex requirements,
-              designing structured solutions, writing
-              maintainable code and testing applications
-              carefully.
-            </p>
-
-            <div className="about-details">
-
-              <div>
-                <span>PROFESSION</span>
-                <strong>Backend Developer</strong>
+                <span className="preview-caption">
+                  CONCEPTUAL INTERFACE PREVIEW
+                </span>
               </div>
 
-              <div>
-                <span>EDUCATION</span>
-                <strong>BS Computer Science</strong>
+              {/* PROJECT DETAILS */}
+
+              <div className="project-info">
+                <span className="project-number">
+                  SELECTED WORK / {String(projectIndex + 1).padStart(2, "0")}
+                </span>
+                <span className="project-type">{project.label}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="project-features">
+                  {project.features.map((feature, index) => (
+                    <div key={feature}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="project-tech">
+                  {project.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </div>
+
+                <p className="edit-hint">{project.status}</p>
+
+                <a className="text-link" href="#contact">
+                  Ask me about this project <ArrowIcon />
+                </a>
               </div>
-
-              <div>
-                <span>UNIVERSITY</span>
-                <strong>University of Lahore</strong>
-              </div>
-
-              <div>
-                <span>LOCATION</span>
-                <strong>Bahawalpur, Pakistan</strong>
-              </div>
-
-            </div>
-
-          </div>
-
+            </article>
+          ))}
         </div>
+
+        <p className="project-disclaimer">
+          Project previews are conceptual illustrations, not screenshots
+          of deployed applications. Please contact me for technical details.
+        </p>
 
       </section>
 
@@ -759,7 +783,7 @@ export default function Home() {
               </div>
 
               <p>
-                Completed a Bachelor's degree in Computer
+                Completed a Bachelor&apos;s degree in Computer
                 Science, developing academic foundations in
                 programming, computer science concepts,
                 problem-solving and software development.
@@ -917,113 +941,120 @@ export default function Home() {
 
       </section>
 
-      {/* ================= PROJECT SECTION ================= */}
+      {/* ================= ABOUT SECTION ================= */}
 
       <section
-        className="section-wrap content-section projects-section"
-        id="projects"
+        className="section-wrap content-section about-section"
+        id="about"
       >
 
-        <div className="section-heading centered-heading">
+        <div className="section-heading">
 
           <span className="section-kicker">
-            SELECTED WORK
+            A LITTLE INTRODUCTION
           </span>
 
           <h2>
-            Projects that make <span className="accent">ideas real.</span>
+            About <span className="accent">me.</span>
           </h2>
 
           <p>
-            Practical backend development and
-            database-driven application engineering.
+            My background, professional experience and
+            passion for backend engineering.
           </p>
 
         </div>
 
-        <div className="project-list" style={{ display: "grid", gap: 24 }}>
-          {projects.map((project) => (
-            <article className="project-card" key={project.id}>
+        <div className="about-grid">
 
-              {/* CONCEPTUAL PROJECT PREVIEW */}
+          <div className="about-art">
 
-              <div className="project-preview">
+            <div className="about-monogram">
+              MA<span>.</span>
+            </div>
 
-                <div className="project-preview-top">
-                  <span className="preview-brand">
-                    <i /> {project.brand}<span className="accent">{project.brandAccent}</span>
-                  </span>
-                  <span className="preview-status">{project.previewStatus}</span>
-                </div>
+            <div className="about-art-bottom">
+              <span>CURIOUS BY NATURE</span>
+              <span>BUILDER BY CHOICE</span>
+            </div>
 
-                <div className="preview-layout" aria-hidden="true">
-                  <div className="preview-sidebar">
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                  </div>
-                  <div className="preview-main">
-                    <div className="preview-welcome">
-                      <small>{project.previewHeading}</small>
-                      <b>{project.previewMessage}</b>
-                    </div>
-                    <div className="preview-stats">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                    <div className="preview-table">
-                      <i />
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                  </div>
-                </div>
+            <div className="about-ring" />
 
-                <span className="preview-caption">
-                  CONCEPTUAL INTERFACE PREVIEW
-                </span>
+          </div>
+
+          <div className="about-copy">
+
+            <span className="mini-label">
+              BEHIND THE CODE
+            </span>
+
+            <h3>
+              Building reliable systems, one solution at a time.
+            </h3>
+
+            <p>
+              I&apos;m a Computer Science graduate from the
+              University of Lahore with a strong interest
+              in backend engineering and software development.
+            </p>
+
+            <p>
+              I have practical experience developing APIs,
+              working with databases, implementing
+              authentication and authorization, and building
+              application-level business logic.
+            </p>
+
+            <p>
+              During my Backend Development Internship at
+              Decibels Dev, I worked on a full application
+              backend using Python and FastAPI, including
+              feature flags, database operations, permissions
+              and API testing.
+            </p>
+
+            <p>
+              Outside software development, I have also
+              developed leadership and organizational
+              experience through YPDC (Young Peace and
+              Development Corps), where I progressed from
+              Management Head to Vice President.
+            </p>
+
+            <p>
+              I enjoy understanding complex requirements,
+              designing structured solutions, writing
+              maintainable code and testing applications
+              carefully.
+            </p>
+
+            <div className="about-details">
+
+              <div>
+                <span>PROFESSION</span>
+                <strong>Backend Developer</strong>
               </div>
 
-              {/* PROJECT DETAILS */}
-
-              <div className="project-info">
-                <span className="project-type">{project.label}</span>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-
-                <div className="project-features">
-                  {project.features.map((feature, index) => (
-                    <div key={feature}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="project-tech">
-                  {project.technologies.map((technology) => (
-                    <span key={technology}>{technology}</span>
-                  ))}
-                </div>
-
-                <p className="edit-hint">{project.status}</p>
-
-                <a className="text-link" href="#contact">
-                  Ask me about this project <ArrowIcon />
-                </a>
+              <div>
+                <span>EDUCATION</span>
+                <strong>BS Computer Science</strong>
               </div>
-            </article>
-          ))}
+
+              <div>
+                <span>UNIVERSITY</span>
+                <strong>University of Lahore</strong>
+              </div>
+
+              <div>
+                <span>LOCATION</span>
+                <strong>Bahawalpur, Pakistan</strong>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
-
-        <p className="project-disclaimer">
-          Project previews are conceptual illustrations, not screenshots
-          of deployed applications. Please contact me for technical details.
-        </p>
 
       </section>
 
@@ -1107,12 +1138,12 @@ export default function Home() {
           </span>
 
           <h2>
-            Let's build something <span className="accent">useful.</span>
+            Let&apos;s build something <span className="accent">useful.</span>
           </h2>
 
           <p>
             Looking for a Backend Developer? Have a project
-            idea or an opportunity? Let's connect.
+            idea or an opportunity? Let&apos;s connect.
           </p>
 
         </div>
@@ -1163,7 +1194,7 @@ export default function Home() {
               className="button button-primary submit-button"
               type="submit"
             >
-              Prepare email <span aria-hidden="true">→</span>
+              Compose email <span aria-hidden="true">→</span>
             </button>
 
             <p className="form-note">
