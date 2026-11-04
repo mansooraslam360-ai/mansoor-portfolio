@@ -62,6 +62,100 @@ const skillGroups = [
   },
 ];
 
+const projects = [
+  {
+    id: "organization-management",
+    label: "FEATURED PROJECT · INTERNSHIP",
+    title: "Organization Management Platform",
+    description:
+      "A multi-organization backend platform for managing organizations, " +
+      "suborganizations, packages, users, permissions, and business workflows.",
+    brand: "ORG",
+    brandAccent: "SPACE",
+    previewStatus: "BACKEND PLATFORM",
+    previewHeading: "ORGANIZATION OVERVIEW",
+    previewMessage: "Manage with clarity.",
+    features: [
+      "Organization and suborganization management",
+      "Package assignments and version management",
+      "Organization-level feature controls",
+      "Authentication and scoped permissions",
+      "Appointment scheduling and billing workflows",
+      "Database migrations, API validation and documentation",
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "Docker",
+      "Alembic",
+    ],
+    status: "Backend functionality completed · Not publicly deployed",
+  },
+  {
+    id: "clinic-system",
+    label: "SAAS PROJECT · BACKEND DEVELOPMENT",
+    title: "Clinic System",
+    description:
+      "A multi-tenant clinic management backend that organizes patient records, " +
+      "appointments, subscriptions, and billing within clinic-specific data boundaries.",
+    brand: "CLINIC",
+    brandAccent: "OS",
+    previewStatus: "CLINIC MANAGEMENT",
+    previewHeading: "CLINIC OVERVIEW",
+    previewMessage: "Care, organized.",
+    features: [
+      "Clinic-scoped multi-tenant architecture",
+      "Patient records and appointment scheduling",
+      "User authentication and permission controls",
+      "Subscription plans and feature limits",
+      "Invoices, payments and expense tracking",
+      "REST APIs, relational models and database migrations",
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Docker",
+      "JWT",
+    ],
+    status: "Backend project · Contact me for details",
+  },
+  {
+    id: "biometric-attendance",
+    label: "BACKEND PROJECT · ATTENDANCE",
+    title: "Biometric Attendance System",
+    description:
+      "A FastAPI-based attendance backend designed to process biometric " +
+      "attendance events, manage employee and device records, and store " +
+      "time-aware attendance information.",
+    brand: "ATTEND",
+    brandAccent: "SYS",
+    previewStatus: "ATTENDANCE BACKEND",
+    previewHeading: "ATTENDANCE OVERVIEW",
+    previewMessage: "Track every check-in.",
+    features: [
+      "Employee, device and attendance records",
+      "Attendance events using biometric and device IDs",
+      "Leave records and relational data models",
+      "Pakistan time zone (Asia/Karachi) handling",
+      "Local machine simulator for backend development",
+      "Scanner hardware integration planned; backend completed",
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Alembic",
+      "Docker",
+    ],
+    status: "Backend completed · Physical scanner integration pending",
+  },
+] as const;
+
 function ArrowIcon() {
   return (
     <span aria-hidden="true" className="arrow">
@@ -847,152 +941,88 @@ export default function Home() {
 
         </div>
 
-        <article className="project-card">
+        <div className="project-list" style={{ display: "grid", gap: 24 }}>
+          {projects.map((project) => (
+            <article className="project-card" key={project.id}>
 
-          {/* CONCEPTUAL PROJECT PREVIEW */}
+              {/* CONCEPTUAL PROJECT PREVIEW */}
 
-          <div className="project-preview">
+              <div className="project-preview">
 
-            <div className="project-preview-top">
-
-              <span className="preview-brand">
-                <i /> ORG<span className="accent">SPACE</span>
-              </span>
-
-              <span className="preview-status">
-                BACKEND PLATFORM
-              </span>
-
-            </div>
-
-            <div className="preview-layout">
-
-              <div className="preview-sidebar">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-
-              <div className="preview-main">
-
-                <div className="preview-welcome">
-                  <small>ORGANIZATION OVERVIEW</small>
-                  <b>Manage with clarity.</b>
+                <div className="project-preview-top">
+                  <span className="preview-brand">
+                    <i /> {project.brand}<span className="accent">{project.brandAccent}</span>
+                  </span>
+                  <span className="preview-status">{project.previewStatus}</span>
                 </div>
 
-                <div className="preview-stats">
-                  <i />
-                  <i />
-                  <i />
+                <div className="preview-layout" aria-hidden="true">
+                  <div className="preview-sidebar">
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                  <div className="preview-main">
+                    <div className="preview-welcome">
+                      <small>{project.previewHeading}</small>
+                      <b>{project.previewMessage}</b>
+                    </div>
+                    <div className="preview-stats">
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                    <div className="preview-table">
+                      <i />
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="preview-table">
-                  <i />
-                  <i />
-                  <i />
-                  <i />
+                <span className="preview-caption">
+                  CONCEPTUAL INTERFACE PREVIEW
+                </span>
+              </div>
+
+              {/* PROJECT DETAILS */}
+
+              <div className="project-info">
+                <span className="project-type">{project.label}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="project-features">
+                  {project.features.map((feature, index) => (
+                    <div key={feature}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      {feature}
+                    </div>
+                  ))}
                 </div>
 
+                <div className="project-tech">
+                  {project.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </div>
+
+                <p className="edit-hint">{project.status}</p>
+
+                <a className="text-link" href="#contact">
+                  Ask me about this project <ArrowIcon />
+                </a>
               </div>
-
-            </div>
-
-            <span className="preview-caption">
-              CONCEPTUAL INTERFACE PREVIEW
-            </span>
-
-          </div>
-
-          {/* PROJECT DETAILS */}
-
-          <div className="project-info">
-
-            <span className="project-type">
-              FEATURED PROJECT · BACKEND DEVELOPMENT
-            </span>
-
-            <h3>
-              Organization Management Platform
-            </h3>
-
-            <p>
-              A multi-organization management platform
-              designed to manage organizations,
-              suborganizations, package assignments,
-              application features, users and permissions
-              through a centralized backend architecture.
-            </p>
-
-            <div className="project-features">
-
-              <div>
-                <span>01</span>
-                Organization and suborganization management
-              </div>
-
-              <div>
-                <span>02</span>
-                Package assignment and version management
-              </div>
-
-              <div>
-                <span>03</span>
-                Organization-level feature flag controls
-              </div>
-
-              <div>
-                <span>04</span>
-                Authentication and role-based permissions
-              </div>
-
-              <div>
-                <span>05</span>
-                Database models and migration management
-              </div>
-
-              <div>
-                <span>06</span>
-                API development, Swagger documentation,
-                testing and validation
-              </div>
-
-            </div>
-
-            <div className="project-tech">
-
-              <span>Python</span>
-              <span>FastAPI</span>
-              <span>SQLAlchemy</span>
-              <span>PostgreSQL</span>
-              <span>Docker</span>
-              <span>Alembic</span>
-              <span>Postman</span>
-
-            </div>
-
-            <p className="edit-hint">
-              Project status: In development · Not yet deployed
-            </p>
-
-            <a
-              className="text-link"
-              href="#contact"
-            >
-              Ask me about this project <ArrowIcon />
-            </a>
-
-          </div>
-
-        </article>
+            </article>
+          ))}
+        </div>
 
         <p className="project-disclaimer">
-          This project was developed during my internship.
-          The application is still under development and is
-          not publicly deployed. The dashboard illustration
-          is conceptual, not a screenshot of the actual
-          application.
+          Project previews are conceptual illustrations, not screenshots
+          of deployed applications. Please contact me for technical details.
         </p>
 
       </section>
